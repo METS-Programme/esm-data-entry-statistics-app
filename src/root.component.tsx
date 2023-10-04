@@ -6,10 +6,7 @@ const Root: React.FC = () => {
   return (
     <BrowserRouter basename={window.getOpenmrsSpaBase()}>
       <Routes>
-        <Route
-          path="home/statistics"
-          element={<DataEntryStatistics />}
-        />
+        <Route path="home/statistics" element={<DataEntryStatistics />} />
       </Routes>
     </BrowserRouter>
   );
