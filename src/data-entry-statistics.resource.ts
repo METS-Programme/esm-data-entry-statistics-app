@@ -9,20 +9,17 @@ type encounterRequest = {
 };
 
 export function useGetEncounterType(params: encounterRequest) {
-  const apiUrl = `http://5.189.138.250:8080/ugandaemr/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`;
+  const apiUrl = `/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`;
   const { data, error, isLoading, isValidating, mutate } = useSWR<
-    { data: { results: any } },
+    { data: { encounterRequest } },
     Error
   >(apiUrl, openmrsFetch);
-  if (error) {
-    console.error("Error fetching data:", error);
-  }
-
   return {
-    encounterData: data ? data?.data : [],
+    encounterData: data ? data.data : [],
     isLoading,
     isError: error,
     isValidating,
+    mutate,
   };
 }
 

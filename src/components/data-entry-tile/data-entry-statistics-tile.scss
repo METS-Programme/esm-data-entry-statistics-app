@@ -8,6 +8,7 @@
     margin: 10px;
     margin-left: 20px;
     padding-top: 25px;
+    display: flex;
 }
 
 .tile .tileContainer {
@@ -16,7 +17,7 @@
     margin: 5px;
     flex-direction: row;
     justify-content: center;
-    gap: 55px;
+    gap: 30px;
 }
 
 .tile .tileContainer .actionButton {
@@ -25,5 +26,6 @@
 
 :global(.cds--date-picker) {
     display: flex;
-    gap: 45px;
+    gap: 10px;
+    width: auto;
 }

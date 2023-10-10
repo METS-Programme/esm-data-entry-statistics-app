@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DataEntryStatistics from "./data-entry-statistics.component";
+import Home from "./home.component";
 
 const Root: React.FC = () => {
   return (
     <BrowserRouter basename={window.getOpenmrsSpaBase()}>
       <Routes>
-        <Route path="home/statistics" element={<DataEntryStatistics />} />
+        <Route path="home/statistics" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

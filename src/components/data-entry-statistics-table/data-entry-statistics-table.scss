@@ -1,6 +1,3 @@
-// .container {
-//     padding: 20px;
-// }
 @use '@carbon/styles/scss/colors';
 @use '@carbon/styles/scss/spacing';
 @use '@carbon/styles/scss/type';
@@ -115,7 +112,7 @@
 
 .tableContainer {
     margin: 0;
-    padding: 10px;
+    padding: 0;
 }
 
 .search {
@@ -158,7 +155,7 @@
         top: 0;
     }
     &:global(.cds--data-table-container) {
-        padding: 19px;
+        padding-top: 0rem;
     }
     a {
         text-decoration: none;
