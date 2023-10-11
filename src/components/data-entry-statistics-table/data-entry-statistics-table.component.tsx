@@ -20,24 +20,15 @@ import {
   useLayoutType,
   usePagination,
 } from "@openmrs/esm-framework";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./data-entry-statistics-table.scss";
 
-type FilterProps = {
-  rowIds: Array<string>;
-  headers: any;
-  cellsById: any;
-  inputValue: string;
-  getCellId: (row, key) => string;
-};
-
 interface ListProps {
-  columns: any;
   data: any;
 }
 
-const DataEntryStatisticsTable: React.FC<ListProps> = ({ columns, data }) => {
+const DataEntryStatisticsTable: React.FC<ListProps> = ({ data }) => {
   const { t } = useTranslation();
   const layout = useLayoutType();
   const isTablet = useLayoutType() === "tablet";
@@ -47,47 +38,48 @@ const DataEntryStatisticsTable: React.FC<ListProps> = ({ columns, data }) => {
   const [currentPageSize, setPageSize] = useState(10);
   const {
     goTo,
-    results: paginatedList,
+    results: paginatedEncounterTypesList,
     currentPage,
   } = usePagination(data, currentPageSize);
 
-  const handleFilter = ({
-    rowIds,
-    headers,
-    cellsById,
-    inputValue,
-    getCellId,
-  }: FilterProps): Array<string> => {
-    return rowIds.filter((rowId) =>
-      headers.some(({ key }) => {
-        const cellId = getCellId(rowId, key);
-        const filterableValue = cellsById[cellId].value;
-        const filterTerm = inputValue.toLowerCase();
+  const columns = [
+    { id: 0, header: t("userFullName", "User Full Name"), key: "userFullName" },
+    { id: 1, header: t("entryType", "Encounter Types"), key: "entryType" },
+    {
+      id: 2,
+      header: t("numberOfEntries", "Number of Entries"),
+      key: "numberOfEntries",
+    },
+    { id: 3, header: t("numberOfObs", "Number of Obs"), key: "numberOfObs" },
+    { id: 4, header: t("groupBy", "Group By"), key: "groupBy" },
+  ];
 
-        if (typeof filterableValue === "boolean") {
-          return false;
-        }
-
-        return ("" + filterableValue).toLowerCase().includes(filterTerm);
-      })
-    );
-  };
-
-  useEffect(() => {
-    const rows: Array<Record<string, string>> = [];
-
-    paginatedList.map((item: any, index) => {
-      return rows.push({ ...item, id: index++ });
-    });
-    setAllRows(rows);
-  }, [paginatedList, allRows]);
+  const tableRows = useMemo(() => {
+    return data?.map((enctType) => ({
+      ...enctType,
+      userFullName: {
+        content: <span>{enctType.userFullName}</span>,
+      },
+      entryType: {
+        content: <span>{enctType.entryType}</span>,
+      },
+      numberOfEntries: {
+        content: <span>{enctType.numberOfEntries}</span>,
+      },
+      numberOfObs: {
+        content: <span>{enctType.numberOfObs}</span>,
+      },
+      groupBy: {
+        content: <span>{enctType.groupBy}</span>,
+      },
+    }));
+  }, [paginatedEncounterTypesList]);
 
   return (
     <DataTable
       data-floating-menu-container
       rows={allRows}
       headers={columns}
-      filterRows={handleFilter}
       overflowMenuOnHover={isDesktop(layout) ? true : false}
       size={isTablet ? "lg" : "sm"}
       useZebraStyles

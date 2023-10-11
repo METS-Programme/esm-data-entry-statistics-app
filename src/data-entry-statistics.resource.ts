@@ -1,4 +1,4 @@
-import { openmrsFetch, restBaseUrl } from "@openmrs/esm-framework";
+import { openmrsFetch } from "@openmrs/esm-framework";
 import useSWR from "swr";
 
 type encounterRequest = {
@@ -11,7 +11,7 @@ type encounterRequest = {
 export function useGetEncounterType(params: encounterRequest) {
   const apiUrl = `/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`;
   const { data, error, isLoading, isValidating, mutate } = useSWR<
-    { data: { encounterRequest } },
+    { data: { results: Array<encounterRequest> } },
     Error
   >(apiUrl, openmrsFetch);
   return {

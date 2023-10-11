@@ -1,4 +1,6 @@
 @use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 .tile {
     height: 150px;
@@ -29,3 +31,55 @@
     gap: 10px;
     width: auto;
 }
+
+.reportContainerTable {
+    background-color: colors.$white-0;
+    padding: 1rem;
+}
+
+.layerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: spacing.$spacing-05;
+    margin: 2rem 1rem;
+    text-align: center;
+    border: 1px solid colors.$gray-20;
+}
+
+.tileTable {
+    margin: auto;
+}
+
+.contentTable {
+    @include type.type-style("heading-compact-02");
+    color: colors.$gray-70;
+    margin-top: spacing.$spacing-05;
+    margin-bottom: spacing.$spacing-03;
+}
+
+.explainerTable {
+    @include type.type-style('body-compact-01');
+    color: colors.$gray-70;
+}
+
+// .tileTable {
+//     height: 150px;
+//     width: auto;
+//     padding: 10px;
+//     border-radius: 20px;
+//     margin: 10px;
+//     margin-left: 20px;
+//     padding-top: 25px;
+// }
+// .tile .tileContainer {
+//     display: flex;
+//     justify-content: space-evenly;
+//     margin: 5px;
+//     flex-direction: row;
+//     justify-content: center;
+//     gap: 55px;
+// }
+// .tile .tileContainer .actionButton {
+//     height: 50px;
+// }

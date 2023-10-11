@@ -1,34 +1,43 @@
 import React, { useState } from "react";
-import dayjs from "dayjs";
-import {
-  Button,
-  DatePicker,
-  DatePickerInput,
-  Dropdown,
-  Tile,
-  DataTableSkeleton,
-  Layer,
-} from "@carbon/react";
+import { Tile, DataTableSkeleton, Layer } from "@carbon/react";
 import DataEntryStatisticsTable from "../data-entry-statistics-table/data-entry-statistics-table.component";
 import EmptyStateIllustration from "../../empty-state-illustration.component";
 import styles from "./data-entry-statistics-container.scss";
 import { useTranslation } from "react-i18next";
-import {
-  createColumns,
-  useGetEncounterType,
-} from "../../data-entry-statistics.resource";
 
 const DataEntryStatisticsContainer: React.FC = () => {
   const [tableHeaders, setTableHeaders] = useState([]);
+  const [hasUpdatedFilters, setHasUpdatedFilters] = useState(false);
   const { t } = useTranslation();
-  const [fromDate, setFromDate] = useState("");
   const [data, setData] = useState([]);
   const [showTable, setShowTable] = useState(false);
   const [loading, setLoading] = useState(true);
+  
+
+  // if (!isLoading && !setHasUpdatedFilters) {
+  //   let headers = [];
+  //   let dataForReport = [];
+  //   const responseReportName = Object.keys(encounterData)[0];
+  //   if (
+  //     encounterData[responseReportName] &&
+  //     encounterData[responseReportName][0]
+  //   ) {
+  //     const columnNames = Object.keys(encounterData[responseReportName][0]);
+  //     headers = createColumns(columnNames).slice(0, 10);
+  //     dataForReport = encounterData[responseReportName];
+  //     setLoading(false);
+  //     setShowFilters(false);
+  //   } else {
+  //     setShowTable(false);
+  //   }
+  //   setTableHeaders(headers);
+  //   setData(dataForReport);
+  //   setHasUpdatedFixedReport(true);
+  // }
 
   return (
     <>
-      {showTable ? (
+      {/* {showTable ? (
         <>
           {loading && <DataTableSkeleton role="progressbar" />}
           {!loading && (
@@ -38,17 +47,17 @@ const DataEntryStatisticsContainer: React.FC = () => {
           )}
         </>
       ) : (
-        <Layer className={styles.layer}>
-          <Tile className={styles.tile}>
+        <Layer className={styles.layerTable}>
+          <Tile className={styles.tileTable}>
             <EmptyStateIllustration />
-            <p className={styles.content}>No data to display</p>
-            <p className={styles.explainer}>
+            <p className={styles.contentTable}>No data to display</p>
+            <p className={styles.explainerTable}>
               Use the data entry statistics filters above to view your
               statistics
             </p>
           </Tile>
         </Layer>
-      )}
+      )} */}
     </>
   );
 };
