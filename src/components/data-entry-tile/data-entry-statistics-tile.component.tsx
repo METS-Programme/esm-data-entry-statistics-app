@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import {
   Button,
-  DataTableSkeleton,
   DatePicker,
   DatePickerInput,
+  DataTableSkeleton,
   Dropdown,
-  Pagination,
   Layer,
   Tile,
   DataTable,
+  Pagination,
   TableContainer,
   TableToolbar,
   TableToolbarContent,
@@ -22,23 +22,29 @@ import {
   TableBody,
   TableExpandRow,
   TableCell,
-  TableExpandedRow,
 } from "@carbon/react";
 import styles from "./data-entry-statistics-tile.scss";
 import { Intersect } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import {
-  createColumns,
-  useGetEncounterType,
-} from "../../data-entry-statistics.resource";
-import {
-  age,
-  isDesktop,
-  useLayoutType,
-  usePagination,
-} from "@openmrs/esm-framework";
+import { useGetDataEntryStatistics } from "../../data-entry-statistics.resource";
+import { useLayoutType, usePagination } from "@openmrs/esm-framework";
 import EmptyStateIllustration from "../../empty-state-illustration.component";
-import DataEntryStatisticsTable from "../data-entry-statistics-table/data-entry-statistics-table.component";
+
+type EntryTypeData = {
+  userFullName: string;
+  entryType: string;
+  numberOfEntries: number;
+};
+
+type EncounterDataResponse = {
+  encounterData: EntryTypeData[];
+  clearCache: () => void;
+};
+
+type Column = {
+  key: string;
+  header: string;
+};
 
 const DataEntryStatisticsTile: React.FC = () => {
   const { t } = useTranslation();
@@ -46,44 +52,43 @@ const DataEntryStatisticsTile: React.FC = () => {
   const [toDate, setToDate] = useState("");
   const [encUserColumn, setEncUserColumn] = useState("");
   const [groupBy, setGroupBy] = useState("");
-  const [showTable, setShowTable] = useState(false);
+  const [hasUpdatedParams, setHasUpdatedParams] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [hasUpdatedParams, setHasUpdatedParams] = useState(false);
-  const [data, setData] = useState([]);
-  const [tableHeaders, setTableHeaders] = useState([]);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showTable, setShowTable] = useState(false);
+  const [tableData, setTableData] = useState([]);
+  const [allRows, setAllRows] = useState([]);
 
-  const layout = useLayoutType();
-  const isTablet = useLayoutType() === "tablet";
-  const responsiveSize = isTablet ? "lg" : "sm";
   const pageSizes = [10, 20, 30, 40, 50];
   const [currentPageSize, setPageSize] = useState(10);
 
-  const { encounterData, isLoading } = useGetEncounterType({
+  const { encounterData, clearCache } = useGetDataEntryStatistics({
     fromDate: fromDate,
     toDate: toDate,
     encUserColumn: encUserColumn,
     groupBy: groupBy,
-  });
+  }) as EncounterDataResponse;
 
   const handleStartDateChange = (e) => {
-    setFromDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-    console.info("Start Date", e.target.value);
+    if (hasUpdatedParams) {
+      setFromDate(dayjs(e.target.value).format("YYYY-MM-DD"));
+      setHasUpdatedParams(true);
+      setLoading(false);
+      clearCache();
+    } else {
+      setHasUpdatedParams(false);
+    }
+    console.info("test", hasUpdatedParams);
   };
 
   const handleEndDateChange = (e) => {
-    setToDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-    console.info("End Date", e.target.value);
-  };
-
-  const handleUpdateReport = () => {
-    setShowTable(true);
-    setLoading(true);
-    setData([encounterData]);
-    setHasUpdatedParams(true);
-    console.info("Data", encounterData);
-    console.info("Params status", hasUpdatedParams);
-    setData([]);
+    if (hasUpdatedParams) {
+      setToDate(dayjs(e.target.value).format("YYYY-MM-DD"));
+      setHasUpdatedParams(true);
+      setLoading(false);
+    } else {
+      setHasUpdatedParams(false);
+    }
+    console.info("status", hasUpdatedParams);
   };
 
   const items = [
@@ -98,11 +103,101 @@ const DataEntryStatisticsTile: React.FC = () => {
   ];
 
   const handleEncounterDropdownChange = (event) => {
-    setEncUserColumn(event.selectedItem.text);
+    if (hasUpdatedParams) {
+      setEncUserColumn(event.selectedItem.text);
+      setHasUpdatedParams(true);
+      setLoading(false);
+      clearCache();
+    } else {
+      setHasUpdatedParams(false);
+    }
   };
 
   const handleProviderDropdownChange = (event) => {
-    setGroupBy(event.selectedItem.text);
+    if (hasUpdatedParams) {
+      setGroupBy(event.selectedItem.text);
+      setHasUpdatedParams(true);
+      setLoading(false);
+      clearCache();
+    } else {
+      setHasUpdatedParams(false);
+      setLoading(true);
+    }
+  };
+
+  const {
+    goTo,
+    results: paginatedEncounterTypesList,
+    currentPage,
+  } = usePagination(tableData, currentPageSize);
+
+  useEffect(() => {
+    if (encounterData) {
+      const transformedData = {};
+
+      encounterData.forEach((entry) => {
+        if (!transformedData[entry.userFullName]) {
+          transformedData[entry.userFullName] = {};
+        }
+
+        if (!transformedData[entry.userFullName].userFullName) {
+          transformedData[entry.userFullName].userFullName = entry.userFullName;
+        }
+
+        transformedData[entry.userFullName][entry.entryType] =
+          entry.numberOfEntries;
+      });
+
+      setTableData(Object.values(transformedData));
+    }
+  }, [encounterData]);
+
+  let headers = [];
+  const generateColumns = () => {
+    if (!tableData || tableData.length === 0) {
+      return headers;
+    }
+
+    const allColumns = new Set();
+    tableData.forEach((userEntry) => {
+      Object.keys(userEntry).forEach((key) => {
+        if (key !== "userFullName") {
+          allColumns.add(key);
+        }
+      });
+    });
+
+    const columns = ["userFullName", ...allColumns].map((column) => ({
+      key: column,
+      header: column === "userFullName" ? "User" : column,
+    }));
+
+    return columns;
+  };
+
+  headers = generateColumns();
+
+  useEffect(() => {
+    const rows: Array<Record<string, string>> = [];
+
+    paginatedEncounterTypesList.map((item: any, index) => {
+      return rows.push({ ...item, id: index++ });
+    });
+    setAllRows(rows);
+  }, [paginatedEncounterTypesList, allRows]);
+
+  const handleUpdateReport = () => {
+    if (hasUpdatedParams && !loading) {
+      setLoading(false);
+      setShowTable(true);
+    } else {
+      setLoading(false);
+      setShowTable(false);
+      setHasUpdatedParams(false);
+    }
+    console.info("Table Data", tableData);
+    console.info("Encounter Data", encounterData);
+    console.info("Paginated List", paginatedEncounterTypesList);
   };
 
   return (
@@ -154,9 +249,99 @@ const DataEntryStatisticsTile: React.FC = () => {
           </Button>
         </div>
       </Tile>
-
       {showTable ? (
-        <></>
+        <>
+          {loading && <DataTableSkeleton role="progressbar" />}
+          {!loading && (
+            <DataTable
+              rows={allRows}
+              headers={headers}
+              isSortable
+              useZebraStyles
+            >
+              {({
+                rows,
+                headers,
+                getHeaderProps,
+                getTableProps,
+                getRowProps,
+                onInputChange,
+              }) => (
+                <TableContainer className={styles.tableContainer}>
+                  <TableToolbar
+                    style={{
+                      position: "static",
+                      height: "3rem",
+                      overflow: "visible",
+                      backgroundColor: "color",
+                    }}
+                  >
+                    <TableToolbarContent>
+                      <Layer>
+                        <TableToolbarSearch
+                          onChange={onInputChange}
+                          placeholder={t("searchThisList", "Search this list")}
+                          size="sm"
+                        />
+                      </Layer>
+                    </TableToolbarContent>
+                  </TableToolbar>
+                  <Table
+                    {...getTableProps()}
+                    className={styles.activePatientsTable}
+                  >
+                    <TableHead>
+                      <TableRow>
+                        <TableExpandHeader />
+                        {generateColumns().map((column) => (
+                          <TableHeader {...getHeaderProps({ header: column })}>
+                            {column.header}
+                          </TableHeader>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                      {rows.map((row) => {
+                        return (
+                          <React.Fragment key={row.id}>
+                            <TableExpandRow
+                              {...getRowProps({ row })}
+                              key={row.id}
+                            >
+                              {row.cells.map((cell) => (
+                                <TableCell key={cell.id}>
+                                  {cell.value}
+                                </TableCell>
+                              ))}
+                            </TableExpandRow>
+                          </React.Fragment>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                  <Pagination
+                    forwardText="Next page"
+                    backwardText="Previous page"
+                    page={currentPage}
+                    pageSize={currentPageSize}
+                    pageSizes={pageSizes}
+                    totalItems={paginatedEncounterTypesList?.length}
+                    className={styles.pagination}
+                    onChange={({ pageSize, page }) => {
+                      if (pageSize !== currentPageSize) {
+                        setPageSize(pageSize);
+                      }
+                      if (page !== currentPage) {
+                        goTo(page);
+                      }
+                    }}
+                  />
+                </TableContainer>
+              )}
+            </DataTable>
+          )}
+        </>
       ) : (
         <Layer className={styles.layerTable}>
           <Tile className={styles.tileTable}>

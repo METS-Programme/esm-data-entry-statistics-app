@@ -1,5 +1,5 @@
 import { openmrsFetch } from "@openmrs/esm-framework";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 type encounterRequest = {
   fromDate: string;
@@ -8,30 +8,30 @@ type encounterRequest = {
   groupBy: string;
 };
 
-export function useGetEncounterType(params: encounterRequest) {
-  const apiUrl = `/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`;
-  const { data, error, isLoading, isValidating, mutate } = useSWR<
-    { data: { results: Array<encounterRequest> } },
+export function useGetDataEntryStatistics(params: encounterRequest) {
+  const apiUrl = params.fromDate
+    ? `/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`
+    : null;
+  const abortController = new AbortController();
+
+  const { mutate } = useSWRConfig();
+  const clearCache = () => mutate(() => true, undefined, { revalidate: false });
+
+  const fetcher = () =>
+    openmrsFetch(apiUrl.toString(), {
+      signal: abortController.signal,
+    });
+
+  const { data, error, isLoading, isValidating } = useSWR<
+    { data: { encounterData: [] } },
     Error
-  >(apiUrl, openmrsFetch);
+  >(apiUrl, fetcher);
   return {
     encounterData: data ? data.data : [],
     isLoading,
     isError: error,
     isValidating,
     mutate,
+    clearCache,
   };
-}
-
-export function createColumns(columns: Array<string>) {
-  const dataColumn: Array<Record<string, string>> = [];
-  columns.map((column: string, index) => {
-    dataColumn.push({
-      id: `${index++}`,
-      key: column,
-      header: column,
-      accessor: column,
-    });
-  });
-  return dataColumn;
 }

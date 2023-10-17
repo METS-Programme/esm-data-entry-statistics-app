@@ -8,7 +8,6 @@ const Home: React.FC = () => {
       <DataEntryStatisticsHeader />
 
       <DataEntryStatisticsTile />
-
     </div>
   );
 };
