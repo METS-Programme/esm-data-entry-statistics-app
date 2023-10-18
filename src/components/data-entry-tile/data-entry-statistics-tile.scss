@@ -1,0 +1,70 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/type';
+@import "../../root.scss";
+.tile {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 1rem;
+    padding-top: 25px;
+    overflow: auto;
+    .tileContainer {
+        display: flex;
+        margin: 5px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 30px;
+         :global(.cds--label) {
+            font-size: 16px;
+        }
+    }
+    .actionButton {
+        height: 50px;
+        flex-shrink: 0;
+    }
+}
+
+:global(.cds--date-picker) {
+    display: flex;
+    gap: 10px;
+}
+
+.reportContainerTable {
+    background-color: colors.$white-0;
+    padding: 1rem;
+}
+
+.layerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: spacing.$spacing-05;
+    margin: 2rem 1rem;
+    text-align: center;
+    border: 1px solid colors.$gray-20;
+}
+
+.tileTable {
+    margin: auto;
+}
+
+.contentTable {
+    @include type.type-style("heading-compact-02");
+    color: colors.$gray-70;
+    margin-top: spacing.$spacing-05;
+    margin-bottom: spacing.$spacing-03;
+}
+
+.explainerTable {
+    @include type.type-style('body-compact-01');
+    color: colors.$gray-70;
+}
+
+.customLabel {
+    font-size: 16px;
+    color: red;
+}

@@ -98,13 +98,17 @@ const DataEntryStatisticsTile: React.FC = () => {
     },
     {
       id: "option-2",
-      text: "creator",
+      text: "Provider",
     },
   ];
 
   const handleEncounterDropdownChange = (event) => {
     if (hasUpdatedParams) {
-      setEncUserColumn(event.selectedItem.text);
+      if (event.selectedItem.text === "Data Entry Assistant") {
+        setEncUserColumn("creator");
+      } else {
+        setEncUserColumn(event.selectedItem.text);
+      }
       setHasUpdatedParams(true);
       setLoading(false);
       clearCache();
@@ -115,7 +119,11 @@ const DataEntryStatisticsTile: React.FC = () => {
 
   const handleProviderDropdownChange = (event) => {
     if (hasUpdatedParams) {
-      setGroupBy(event.selectedItem.text);
+      if (event.selectedItem.text === "Data Entry Assistant") {
+        setEncUserColumn("creator");
+      } else {
+        setEncUserColumn(event.selectedItem.text);
+      }
       setHasUpdatedParams(true);
       setLoading(false);
       clearCache();
@@ -207,15 +215,16 @@ const DataEntryStatisticsTile: React.FC = () => {
           <Dropdown
             id="encounteruser"
             titleText={t("encounterUser", "Encounter User")}
-            label="creator"
+            label="Data Entry Assistant"
             items={items}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleEncounterDropdownChange}
+            className={styles.customLabel}
           />
           <Dropdown
             id="orderedby"
             titleText={t("orderedBy", "Ordered By")}
-            label="creator"
+            label="Data Entry Assistant"
             items={items}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleProviderDropdownChange}
@@ -236,6 +245,7 @@ const DataEntryStatisticsTile: React.FC = () => {
               labelText="End date"
               size="md"
               onChange={handleEndDateChange}
+              className={styles.customLabel}
             />
           </DatePicker>
           <Button
@@ -292,7 +302,6 @@ const DataEntryStatisticsTile: React.FC = () => {
                   >
                     <TableHead>
                       <TableRow>
-                        <TableExpandHeader />
                         {generateColumns().map((column) => (
                           <TableHeader {...getHeaderProps({ header: column })}>
                             {column.header}
@@ -305,16 +314,13 @@ const DataEntryStatisticsTile: React.FC = () => {
                       {rows.map((row) => {
                         return (
                           <React.Fragment key={row.id}>
-                            <TableExpandRow
-                              {...getRowProps({ row })}
-                              key={row.id}
-                            >
+                            <TableRow {...getRowProps({ row })}>
                               {row.cells.map((cell) => (
                                 <TableCell key={cell.id}>
-                                  {cell.value}
+                                  {cell.value ?? 0}
                                 </TableCell>
                               ))}
-                            </TableExpandRow>
+                            </TableRow>
                           </React.Fragment>
                         );
                       })}
