@@ -3,33 +3,34 @@
 @use '@carbon/styles/scss/type';
 @import "../../root.scss";
 .tile {
+    display: flex;
+    flex-direction: row;
     height: 150px;
     width: auto;
     padding: 10px;
-    border-radius: 20px;
-    margin: 10px;
-    margin-left: 20px;
+    border-radius: 10px;
+    margin: 1rem;
     padding-top: 25px;
-    display: flex;
-}
-
-.tile .tileContainer {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 5px;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30px;
-}
-
-.tile .tileContainer .actionButton {
-    height: 50px;
+    overflow: auto;
+    .tileContainer {
+        display: flex;
+        margin: 5px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 30px;
+         :global(.cds--label) {
+            font-size: 16px;
+        }
+    }
+    .actionButton {
+        height: 50px;
+        flex-shrink: 0;
+    }
 }
 
 :global(.cds--date-picker) {
     display: flex;
     gap: 10px;
-    width: auto;
 }
 
 .reportContainerTable {
@@ -63,23 +64,7 @@
     color: colors.$gray-70;
 }
 
-// .tileTable {
-//     height: 150px;
-//     width: auto;
-//     padding: 10px;
-//     border-radius: 20px;
-//     margin: 10px;
-//     margin-left: 20px;
-//     padding-top: 25px;
-// }
-// .tile .tileContainer {
-//     display: flex;
-//     justify-content: space-evenly;
-//     margin: 5px;
-//     flex-direction: row;
-//     justify-content: center;
-//     gap: 55px;
-// }
-// .tile .tileContainer .actionButton {
-//     height: 50px;
-// }
+.customLabel {
+    font-size: 16px;
+    color: red;
+}
