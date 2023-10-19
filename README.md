@@ -1,14 +1,28 @@
-![Node.js CI](https://github.com/METS-Programme/esm-ugandaemr-template-app/workflows/Node.js%20CI/badge.svg)
+# OpenMRS 3.x DATA ENTRY STATISTICS ESM
 
-# UgandaEMR Template app
+A frontend module for viewing data entry statistics built on OpenMRS 3.x
 
-![Landing page screenshot](./src/assets/images/screen.png)
+# Getting Started
 
-A starter template ESM for UgandaEMR inspired by https://github.com/openmrs/openmrs-esm-template-app.
+```sh
+# Clone the repository
+git clone git@github.com:METS-Programme/esm-data-entry-statistics-app.git
 
-You can use this repo as a template to spawn new frontend modules for UgandaEMR.
+# to install dependencies
+yarn
 
-The current setup works best for setting up polyrepos. To adapt the template for a monorepo setup, you'll need to make the following changes:
+# to run the dev server
+yarn start
 
-- Add a `packages` directory inside of `src`.
+# OR to start on a specified port eg 5000
+yarn start --port 4200
+```
 
+Once it is running, a browser window
+should open with the OpenMRS 3 application. Log in and then navigate to
+`/openmrs/spa/home/statistics`.
+
+# Running tests
+```
+yarn run test
+```
