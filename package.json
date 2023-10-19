@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "MPL-2.0",
     "description": "Frontend module for data entry statistics",
-    "browser": "dist/esm-data-entry-statistics-app.js",
+    "browser": "dist/esm-ugandaemr-data-entry-statistics-app.js",
     "main": "src/index.ts",
     "source": true,
     "scripts": {
