@@ -33,9 +33,14 @@
     gap: 10px;
 }
 
-.reportContainerTable {
-    background-color: colors.$white-0;
-    padding: 1rem;
+.container {
+    background-color: $ui-01;
+}
+
+.tableContainer {
+    background-color: $ui-01;
+    margin: 0 spacing.$spacing-05;
+    padding: 0;
 }
 
 .layerTable {
@@ -62,9 +67,4 @@
 .explainerTable {
     @include type.type-style('body-compact-01');
     color: colors.$gray-70;
-}
-
-.customLabel {
-    font-size: 16px;
-    color: red;
 }
