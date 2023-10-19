@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import {
   Button,
@@ -17,10 +17,8 @@ import {
   Table,
   TableHead,
   TableRow,
-  TableExpandHeader,
   TableHeader,
   TableBody,
-  TableExpandRow,
   TableCell,
 } from "@carbon/react";
 import styles from "./data-entry-statistics-tile.scss";
@@ -134,9 +132,9 @@ const DataEntryStatisticsTile: React.FC = () => {
   const handleProviderDropdownChange = (event) => {
     if (hasUpdatedParams) {
       if (event.selectedItem.text === "Data Entry Assistant") {
-        setEncUserColumn("creator");
+        setGroupBy("creator");
       } else {
-        setEncUserColumn(event.selectedItem.text);
+        setGroupBy(event.selectedItem.text);
       }
       setHasUpdatedParams(true);
       setLoading(false);
@@ -242,8 +240,9 @@ const DataEntryStatisticsTile: React.FC = () => {
           <Dropdown
             id="encounteruser"
             titleText={t("encounterUser", "Encounter User")}
-            label="Data Entry Assistant"
+            // label="Data Entry Assistant"
             items={items}
+            initialSelectedItem={items[0]}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleEncounterDropdownChange}
             className={styles.customLabel}

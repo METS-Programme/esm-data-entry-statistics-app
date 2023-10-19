@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4309b39d-0d80-4f01-8628-2779ba9cca40" name="Default Changelist" comment="" />
+    <list default="true" id="4309b39d-0d80-4f01-8628-2779ba9cca40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/createDashboardLink.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/empty-state-illustration.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__mocks__/react-i18next.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +38,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -28,13 +46,14 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="D:\METS\esm-data-entry-statistics-app\node_modules\prettier" />
     <property name="ts.external.directory.path" value="D:\METS\esm-data-entry-statistics-app\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\METS\esm-data-entry-statistics-app\node_modules\@openmrs" />
       <recent name="D:\METS\esm-data-entry-statistics-app\node_modules" />
+      <recent name="D:\METS\esm-data-entry-statistics-app\node_modules\@openmrs" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -51,6 +70,8 @@
       <workItem from="1696941928306" duration="77000" />
       <workItem from="1697700957531" duration="2054000" />
       <workItem from="1697714576760" duration="1769000" />
+      <workItem from="1697720790156" duration="645000" />
+      <workItem from="1697740504714" duration="751000" />
     </task>
     <servers />
   </component>
@@ -58,9 +79,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="379" y="96" width="607" height="536" key="find.popup" timestamp="1697714833218">
+    <state x="379" y="96" width="607" height="536" key="find.popup" timestamp="1697742329018">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="96" width="607" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1697714833218" />
+    <state x="379" y="96" width="607" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1697742329018" />
   </component>
 </project>
