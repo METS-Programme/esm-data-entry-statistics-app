@@ -6385,7 +6385,7 @@ __metadata:
     webpack-cli: ^5.1.4
   peerDependencies:
     "@openmrs/esm-framework": "*"
-    dayjs: 1.x
+    dayjs: "*"
     react: 18.x
     react-i18next: 11.x
     react-router-dom: 6.x

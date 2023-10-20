@@ -2,35 +2,41 @@
 @use '@carbon/styles/scss/colors';
 @use '@carbon/styles/scss/type';
 @import "../../root.scss";
+* {
+    box-sizing: border-box;
+}
+
 .tile {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 150px;
-    width: auto;
-    padding: 10px;
+    padding: 2rem 1rem;
     border-radius: 10px;
     margin: 1rem;
-    padding-top: 25px;
-    overflow: auto;
-    .tileContainer {
+    .tileContent {
         display: flex;
-        margin: 5px;
+        margin: 0;
         flex-direction: row;
         justify-content: space-between;
-        gap: 30px;
+        align-items: center;
+        width: 100%;
          :global(.cds--label) {
             font-size: 16px;
         }
+        .actionButtonContainer {
+            display: flex;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+         :global(.cds--form-item) {
+            margin-left: 1rem;
+            flex: 0;
+        }
+         :global(.cds--list-box__wrapper) {
+            margin-left: 1rem;
+        }
     }
-    .actionButton {
-        height: 50px;
-        flex-shrink: 0;
-    }
-}
-
-:global(.cds--date-picker) {
-    display: flex;
-    gap: 10px;
 }
 
 .container {

@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4309b39d-0d80-4f01-8628-2779ba9cca40" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/createDashboardLink.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/empty-state-illustration.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__mocks__/react-i18next.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/screen.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +59,7 @@
       <workItem from="1697700957531" duration="2054000" />
       <workItem from="1697714576760" duration="1769000" />
       <workItem from="1697720790156" duration="645000" />
-      <workItem from="1697740504714" duration="751000" />
+      <workItem from="1697740504714" duration="2637000" />
     </task>
     <servers />
   </component>

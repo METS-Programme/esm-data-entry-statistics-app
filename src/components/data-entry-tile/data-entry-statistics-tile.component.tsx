@@ -236,12 +236,12 @@ const DataEntryStatisticsTile: React.FC = () => {
   return (
     <>
       <Tile className={styles.tile}>
-        <div className={styles.tileContainer}>
+        <div className={styles.tileContent}>
           <Dropdown
             id="encounteruser"
             titleText={t("encounterUser", "Encounter User")}
-            // label="Data Entry Assistant"
             items={items}
+            size="sm"
             initialSelectedItem={items[0]}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleEncounterDropdownChange}
@@ -251,17 +251,20 @@ const DataEntryStatisticsTile: React.FC = () => {
             id="orderedby"
             titleText={t("orderedBy", "Ordered By")}
             label="Data Entry Assistant"
+            size="sm"
             items={items}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleProviderDropdownChange}
+            className={styles.customLabel}
           />
           <DatePicker datePickerType="single">
             <DatePickerInput
               id="date-picker-input-start"
               placeholder="mm/dd/yyyy"
               labelText="Start date"
-              size="md"
+              size="sm"
               onChange={handleStartDateChange}
+              className={styles.customLabel}
             />
           </DatePicker>
           <DatePicker datePickerType="single">
@@ -269,20 +272,21 @@ const DataEntryStatisticsTile: React.FC = () => {
               id="date-picker-input-finish"
               placeholder="mm/dd/yyyy"
               labelText="End date"
-              size="md"
+              size="sm"
               onChange={handleEndDateChange}
               className={styles.customLabel}
             />
           </DatePicker>
-          <Button
-            size="sm"
-            kind="primary"
-            onClick={handleUpdateReport}
-            className={styles.actionButton}
-          >
-            <Intersect />
-            <span>View</span>
-          </Button>
+          <div className={styles.actionButtonContainer}>
+            <Button
+              size="md"
+              kind="primary"
+              onClick={handleUpdateReport}
+              renderIcon={(props) => <Intersect size={16} {...props} />}
+            >
+              <span>View</span>
+            </Button>
+          </div>
         </div>
       </Tile>
       {showTable ? (
