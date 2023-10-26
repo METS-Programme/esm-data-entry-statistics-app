@@ -33,7 +33,8 @@ export const dataEntryStatisticsAppDashboardLink = getSyncLifecycle(
   options
 );
 export const dataEntryStatisticsComponent = getAsyncLifecycle(
-  () => import("./data-entry-statistics.component"),
+  () => import("./home.component"),
+
   options
 );
 

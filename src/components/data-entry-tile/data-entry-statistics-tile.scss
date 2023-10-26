@@ -1,0 +1,76 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/type';
+@import "../../root.scss";
+* {
+    box-sizing: border-box;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    margin: 1rem;
+    .tileContent {
+        display: flex;
+        margin: 0;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+         :global(.cds--label) {
+            font-size: 16px;
+        }
+        .actionButtonContainer {
+            display: flex;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+         :global(.cds--form-item) {
+            margin-left: 1rem;
+            flex: 0;
+        }
+         :global(.cds--list-box__wrapper) {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.container {
+    background-color: $ui-01;
+}
+
+.tableContainer {
+    background-color: $ui-01;
+    margin: 0 spacing.$spacing-05;
+    padding: 0;
+}
+
+.layerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: spacing.$spacing-05;
+    margin: 2rem 1rem;
+    text-align: center;
+    border: 1px solid colors.$gray-20;
+}
+
+.tileTable {
+    margin: auto;
+}
+
+.contentTable {
+    @include type.type-style("heading-compact-02");
+    color: colors.$gray-70;
+    margin-top: spacing.$spacing-05;
+    margin-bottom: spacing.$spacing-03;
+}
+
+.explainerTable {
+    @include type.type-style('body-compact-01');
+    color: colors.$gray-70;
+}
