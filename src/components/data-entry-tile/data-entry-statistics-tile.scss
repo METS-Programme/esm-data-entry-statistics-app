@@ -5,18 +5,19 @@
 .tile {
     display: flex;
     flex-direction: row;
-    height: 150px;
+    justify-content: space-evenly;
+    height: 200px;
     width: auto;
     padding: 10px;
     border-radius: 10px;
     margin: 1rem;
     padding-top: 25px;
-    overflow: auto;
     .tileContainer {
         display: flex;
-        margin: 5px;
-        flex-direction: row;
-        justify-content: space-between;
+        margin-bottom: 1rem;
+        margin-right: 3rem;
+        flex-direction: column;
+        justify-content: space-evenly;
         gap: 30px;
          :global(.cds--label) {
             font-size: 16px;
@@ -24,7 +25,7 @@
     }
     .actionButton {
         height: 50px;
-        flex-shrink: 0;
+        // flex-shrink: 0;
     }
 }
 

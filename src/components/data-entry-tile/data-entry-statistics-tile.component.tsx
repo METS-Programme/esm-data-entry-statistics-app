@@ -82,25 +82,12 @@ const DataEntryStatisticsTile: React.FC = () => {
     groupBy: groupBy,
   }) as EncounterDataResponse;
 
-  const handleStartDateChange = (e) => {
-    if (hasUpdatedParams) {
-      setFromDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-      setHasUpdatedParams(true);
-      setLoading(false);
-      clearCache();
-    } else {
-      setHasUpdatedParams(false);
-    }
+  const handleStartDateChange = (selectedDate) => {
+    setFromDate(dayjs(selectedDate[0]).format("YYYY-MM-DD"));
   };
 
-  const handleEndDateChange = (e) => {
-    if (hasUpdatedParams) {
-      setToDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-      setHasUpdatedParams(true);
-      setLoading(false);
-    } else {
-      setHasUpdatedParams(false);
-    }
+  const handleEndDateChange = (selectedDate) => {
+    setToDate(dayjs(selectedDate[0]).format("YYYY-MM-DD"));
   };
 
   const items = [
@@ -226,6 +213,10 @@ const DataEntryStatisticsTile: React.FC = () => {
     if (hasUpdatedParams && !loading) {
       setLoading(false);
       setShowTable(true);
+      console.info(tableData);
+      console.info(encounterData);
+      console.info(paginatedEncounterTypesList);
+      console.info(headers);
     } else {
       setLoading(false);
       setShowTable(false);
@@ -246,6 +237,17 @@ const DataEntryStatisticsTile: React.FC = () => {
             onChange={handleEncounterDropdownChange}
             className={styles.customLabel}
           />
+
+          <DatePicker datePickerType="single" onChange={handleStartDateChange}>
+            <DatePickerInput
+              id="date-picker-input-start"
+              placeholder="mm/dd/yyyy"
+              labelText="Start date"
+              size="md"
+            />
+          </DatePicker>
+        </div>
+        <div className={styles.tileContainer}>
           <Dropdown
             id="orderedby"
             titleText={t("orderedBy", "Ordered By")}
@@ -254,25 +256,17 @@ const DataEntryStatisticsTile: React.FC = () => {
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleProviderDropdownChange}
           />
-          <DatePicker datePickerType="single">
-            <DatePickerInput
-              id="date-picker-input-start"
-              placeholder="mm/dd/yyyy"
-              labelText="Start date"
-              size="md"
-              onChange={handleStartDateChange}
-            />
-          </DatePicker>
-          <DatePicker datePickerType="single">
+          <DatePicker datePickerType="single" onChange={handleEndDateChange}>
             <DatePickerInput
               id="date-picker-input-finish"
               placeholder="mm/dd/yyyy"
               labelText="End date"
               size="md"
-              onChange={handleEndDateChange}
               className={styles.customLabel}
             />
           </DatePicker>
+        </div>
+        <div className={styles.tileContainer}>
           <Button
             size="sm"
             kind="primary"
