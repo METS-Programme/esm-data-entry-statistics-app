@@ -213,10 +213,6 @@ const DataEntryStatisticsTile: React.FC = () => {
     if (hasUpdatedParams && !loading) {
       setLoading(false);
       setShowTable(true);
-      console.info(tableData);
-      console.info(encounterData);
-      console.info(paginatedEncounterTypesList);
-      console.info(headers);
     } else {
       setLoading(false);
       setShowTable(false);
