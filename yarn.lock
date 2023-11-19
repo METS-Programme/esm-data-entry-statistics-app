@@ -2320,7 +2320,6 @@ __metadata:
 "@humanwhocodes/config-array@npm:^0.11.11":
   version: 0.11.11
   resolution: "@humanwhocodes/config-array@npm:0.11.11"
-
   dependencies:
     "@humanwhocodes/object-schema": ^2.0.0
     debug: ^4.1.1
