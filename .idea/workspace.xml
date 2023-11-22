@@ -2,12 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4309b39d-0d80-4f01-8628-2779ba9cca40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/data-entry-tile/summary-tile.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/data-entry-tile/summary-tile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data-entry-statistics-header/data-entry-statistics-header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-statistics-header/data-entry-statistics-header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data-entry-statistics-header/data-entry-statistics-illustration.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-statistics-header/data-entry-statistics-illustration.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/data-entry-tile/data-entry-statistics-tile.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config-schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config-schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createDashboardLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/createDashboardLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data-entry-statistics.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/data-entry-statistics.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data-entry-statistics.resource.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data-entry-statistics.resource.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/declarations.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/declarations.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/empty-state-illustration.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/empty-state-illustration.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/home.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/home.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setup-tests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/setup-tests.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/data-entry-tile" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -36,10 +47,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="D:\METS\esm-data-entry-statistics-app\node_modules\prettier" />
-    <property name="ts.external.directory.path" value="D:\METS\esm-data-entry-statistics-app\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\METS\esm-data-entry-statistics-app\src\components\data-entry-tile" />
       <recent name="D:\METS\esm-data-entry-statistics-app\node_modules" />
       <recent name="D:\METS\esm-data-entry-statistics-app\node_modules\@openmrs" />
     </key>
@@ -60,6 +72,7 @@
       <workItem from="1697714576760" duration="1769000" />
       <workItem from="1697720790156" duration="645000" />
       <workItem from="1697740504714" duration="2637000" />
+      <workItem from="1700680349762" duration="849000" />
     </task>
     <servers />
   </component>

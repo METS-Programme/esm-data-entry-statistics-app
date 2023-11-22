@@ -8,34 +8,27 @@
 
 .tile {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-    padding: 2rem 1rem;
-    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    height: 10rem;
+    padding: spacing.$spacing-05;
+    border-radius: 0.2rem;
     margin: 1rem;
-    .tileContent {
-        display: flex;
-        margin: 0;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-         :global(.cds--label) {
-            font-size: 16px;
-        }
-        .actionButtonContainer {
-            display: flex;
-            flex-shrink: 0;
-            margin-left: 1rem;
-        }
-         :global(.cds--form-item) {
-            margin-left: 1rem;
-            flex: 0;
-        }
-         :global(.cds--list-box__wrapper) {
-            margin-left: 1rem;
-        }
+    max-width: 100%;
+    .tileDiv {
+        margin: 0.5rem;
+        height: 3.5rem;
+    }
+     :global(.cds--label) {
+        font-size: 1rem;
+    }
+     :global(.cds--date-picker-container) {
+        width: 10rem;
+        margin-right: 3rem;
+    }
+    .actionButton {
+        height: 3rem;
     }
 }
 
