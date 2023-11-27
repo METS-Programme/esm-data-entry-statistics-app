@@ -82,25 +82,12 @@ const DataEntryStatisticsTile: React.FC = () => {
     groupBy: groupBy,
   }) as EncounterDataResponse;
 
-  const handleStartDateChange = (e) => {
-    if (hasUpdatedParams) {
-      setFromDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-      setHasUpdatedParams(true);
-      setLoading(false);
-      clearCache();
-    } else {
-      setHasUpdatedParams(false);
-    }
+  const handleStartDateChange = (selectedDate) => {
+    setFromDate(dayjs(selectedDate[0]).format("YYYY-MM-DD"));
   };
 
-  const handleEndDateChange = (e) => {
-    if (hasUpdatedParams) {
-      setToDate(dayjs(e.target.value).format("YYYY-MM-DD"));
-      setHasUpdatedParams(true);
-      setLoading(false);
-    } else {
-      setHasUpdatedParams(false);
-    }
+  const handleEndDateChange = (selectedDate) => {
+    setToDate(dayjs(selectedDate[0]).format("YYYY-MM-DD"));
   };
 
   const items = [
@@ -138,7 +125,6 @@ const DataEntryStatisticsTile: React.FC = () => {
       }
       setHasUpdatedParams(true);
       setLoading(false);
-      clearCache();
     } else {
       setHasUpdatedParams(false);
       setLoading(true);
@@ -227,8 +213,8 @@ const DataEntryStatisticsTile: React.FC = () => {
       setLoading(false);
       setShowTable(true);
     } else {
-      setLoading(false);
-      setShowTable(false);
+      setLoading(true);
+      setShowTable(true);
       setHasUpdatedParams(false);
     }
   };
@@ -236,62 +222,63 @@ const DataEntryStatisticsTile: React.FC = () => {
   return (
     <>
       <Tile className={styles.tile}>
-        <div className={styles.tileContent}>
+        <div className={styles.tileDiv}>
           <Dropdown
             id="encounteruser"
             titleText={t("encounterUser", "Encounter User")}
-            items={items}
-            size="sm"
             initialSelectedItem={items[0]}
+            items={items}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleEncounterDropdownChange}
-            className={styles.customLabel}
           />
+        </div>
+        <div className={styles.tileDiv}>
           <Dropdown
             id="orderedby"
             titleText={t("orderedBy", "Ordered By")}
-            label="Data Entry Assistant"
-            size="sm"
+            initialSelectedItem={items[0]}
             items={items}
             itemToString={(item) => (item ? item.text : "")}
             onChange={handleProviderDropdownChange}
-            className={styles.customLabel}
           />
-          <DatePicker datePickerType="single">
+        </div>
+        <div className={styles.tileDiv}>
+          <DatePicker datePickerType="single" onChange={handleStartDateChange}>
             <DatePickerInput
               id="date-picker-input-start"
               placeholder="mm/dd/yyyy"
               labelText="Start date"
-              size="sm"
-              onChange={handleStartDateChange}
-              className={styles.customLabel}
+              size="md"
             />
           </DatePicker>
-          <DatePicker datePickerType="single">
+        </div>
+        <div className={styles.tileDiv}>
+          <DatePicker datePickerType="single" onChange={handleEndDateChange}>
             <DatePickerInput
               id="date-picker-input-finish"
               placeholder="mm/dd/yyyy"
               labelText="End date"
-              size="sm"
-              onChange={handleEndDateChange}
-              className={styles.customLabel}
+              size="md"
             />
           </DatePicker>
-          <div className={styles.actionButtonContainer}>
-            <Button
-              size="md"
-              kind="primary"
-              onClick={handleUpdateReport}
-              renderIcon={(props) => <Intersect size={16} {...props} />}
-            >
-              <span>View</span>
-            </Button>
-          </div>
+        </div>
+        <div className={styles.tileDiv}>
+          <Button
+            size="sm"
+            kind="primary"
+            onClick={handleUpdateReport}
+            className={styles.actionButton}
+          >
+            <Intersect />
+            <span>View</span>
+          </Button>
         </div>
       </Tile>
       {showTable ? (
         <>
-          {loading && <DataTableSkeleton role="progressbar" />}
+          {!loading && paginatedEncounterTypesList?.length <= 0 && (
+            <DataTableSkeleton role="progressbar" />
+          )}
           {!loading && (
             <div className={styles.container}>
               <DataTable
@@ -389,8 +376,7 @@ const DataEntryStatisticsTile: React.FC = () => {
             <EmptyStateIllustration />
             <p className={styles.contentTable}>No data to display</p>
             <p className={styles.explainerTable}>
-              Use the data entry statistics filters above to view your
-              statistics
+              Use the data entry statistics filters above to view statistics
             </p>
           </Tile>
         </Layer>
