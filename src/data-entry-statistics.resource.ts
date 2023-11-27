@@ -1,4 +1,4 @@
-import { openmrsFetch } from "@openmrs/esm-framework";
+import { openmrsFetch, restBaseUrl } from "@openmrs/esm-framework";
 import useSWR, { useSWRConfig } from "swr";
 
 type encounterRequest = {
@@ -9,9 +9,7 @@ type encounterRequest = {
 };
 
 export function useGetDataEntryStatistics(params: encounterRequest) {
-  const apiUrl = params.fromDate
-    ? `/ws/rest/v1/dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`
-    : null;
+  const apiUrl = `${restBaseUrl}dataentrystatistics?fromDate=${params.fromDate}&toDate=${params.toDate}&encUserColumn=${params.encUserColumn}&groupBy=${params.groupBy}`;
   const abortController = new AbortController();
 
   const { mutate } = useSWRConfig();

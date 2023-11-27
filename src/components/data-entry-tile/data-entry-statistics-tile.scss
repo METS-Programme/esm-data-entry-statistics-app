@@ -16,9 +16,11 @@
     border-radius: 0.2rem;
     margin: 1rem;
     max-width: 100%;
+    background-color: $ui-01;
     .tileDiv {
         margin: 0.5rem;
         height: 3.5rem;
+        padding: 0;
     }
      :global(.cds--label) {
         font-size: 1rem;
